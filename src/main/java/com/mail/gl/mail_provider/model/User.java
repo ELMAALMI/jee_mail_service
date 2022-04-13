@@ -1,27 +1,34 @@
 package com.mail.gl.mail_provider.model;
 
+import java.util.Date;
+
 public class User {
     private int id;
     private String nom;
     private String prenom;
     private String email;
     private String password;
-
+    private boolean active;
+    private Date birthday;
     public User(){
     }
-    public User(int id, String nom, String prenom, String email, String password) {
+    public User(int id, String nom, String prenom, String email, String password,boolean active,Date birthday) {
         this.id = id;
         this.nom = nom;
         this.prenom = prenom;
         this.email = email;
         this.password = password;
+        this.active = active;
+        this.birthday = birthday;
     }
 
-    public User(String nom, String prenom, String email, String password) {
+    public User(String nom, String prenom, String email, String password,boolean active,Date birthday) {
         this.nom = nom;
         this.prenom = prenom;
         this.email = email;
         this.password = password;
+        this.active = active;
+        this.birthday = birthday;
     }
 
     public int getId() {
@@ -62,5 +69,34 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
+    }
+
+    public Date getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(Date birthday) {
+        this.birthday = birthday;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", nom='" + nom + '\'' +
+                ", prenom='" + prenom + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", active=" + active +
+                ", birthday=" + birthday +
+                '}';
     }
 }

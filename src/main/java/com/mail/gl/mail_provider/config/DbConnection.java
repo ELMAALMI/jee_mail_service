@@ -5,9 +5,26 @@ import java.sql.DriverManager;
 
 public class DbConnection {
     private static Connection connection;
-    private final static String db_user = "root";
-    private final static String db_pwd = "123456789";
-    private final static String db_name="db_java";
+    private final static String DB_USER = "root";
+    private final static String DB_PWD = "123456789";
+    private final static String DB_NAME="fmail_db";
+    private final static String DB_HOST="localhost";
+    /*
+    public static Connection getConnection(){
+        try {
+            Context ctx = new InitialContext();
+            if(ctx == null )
+                throw new Exception("Boom - No Context");
+            DataSource ds = (DataSource)ctx.lookup("java:comp/env/jdbc/mailDB");
+            if(ds != null){
+                connection = ds.getConnection();
+            }
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return connection;
+    }*/
 
     public static Connection getConnection(){
         if (connection != null){
@@ -15,7 +32,7 @@ public class DbConnection {
         }
         try {
             Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/"+db_name,db_user,db_pwd);
+            connection = DriverManager.getConnection("jdbc:mysql://"+DB_HOST+":3306/"+DB_NAME,DB_USER,DB_PWD);
             System.out.println("Connection Successfully to Mysql");
         }
         catch (Exception e) {
@@ -24,4 +41,5 @@ public class DbConnection {
         }
         return connection;
     }
+
 }

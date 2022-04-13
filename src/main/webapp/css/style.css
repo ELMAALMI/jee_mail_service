@@ -1,28 +1,29 @@
-body {
+body{
+    background:#eee;
+}
+.wrapper{
+    margin: 80px;
+}
+.form-signin{
+    max-width: 500px;
+    margin: 0 auto;
+    background-color: #fff;
+    padding: 15px 40px 50px;
+    border: 1px solid #e5e5e5;
+    border-radius: 10px;
+}
+.form-signin .form-signin-heading{
+    margin-bottom: 30px;
+}
+.form-signin input{
+    margin-bottom: 20px;
+}
+.error-template{
+    text-align: center;
+}
+.center-content{
     display: flex;
-    min-height: 100vh;
-    flex-direction: column;
-}
-
-main {
-    flex: 1 0 auto;
-}
-
-body {
-    background: #fff;
-}
-
-.input-field input[type=date]:focus + label,
-.input-field input[type=text]:focus + label,
-.input-field input[type=email]:focus + label,
-.input-field input[type=password]:focus + label {
-    color: #e91e63;
-}
-
-.input-field input[type=date]:focus,
-.input-field input[type=text]:focus,
-.input-field input[type=email]:focus,
-.input-field input[type=password]:focus {
-    border-bottom: 2px solid #e91e63;
-    box-shadow: none;
+    justify-content: center;
+    align-content: center;
+    height: 100vh;
 }
