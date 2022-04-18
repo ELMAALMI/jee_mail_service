@@ -10,8 +10,15 @@ public class DateParser {
         DateFormat formatter = new SimpleDateFormat("yyyy-MM-DD");
         return (Date)formatter.parse(date);
     }
-    public static Date formate(Date date) throws ParseException {
-        DateFormat formatter = new SimpleDateFormat("yyyy-MM-DD");
-        return formatter.parse(date.toString());
+    public static String formate(Date date) {
+        try {
+            String pattern = "MM-dd-yyyy";
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+            String date_formating = simpleDateFormat.format(new Date());
+            return date_formating;
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return null;
     }
 }

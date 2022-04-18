@@ -9,6 +9,7 @@
 <html>
 <head>
     <title>Profile</title>
+    <jsp:include page="../WEB-COMPONENTS/Head.jsp"/>
 </head>
 <body>
 <%
@@ -16,5 +17,17 @@
 %>
 
 </body>
-<h1><%=user.getEmail()%></h1>
+    <jsp:include page="../WEB-COMPONENTS/NavBar.jsp"/>
+    <div class="container mt-3">
+        <div class="card">
+            <form class="form-signin mt-5 mb-5" style="width: 900px" action="update-profile" >
+                <h2 class="form-signin-heading text-center">Profile</h2>
+                <input type="text" readonly placeholder="Email Address" class="form-control" value="<%=user.getEmail()%>" name="email" required>
+                <input type="text" placeholder="nom" class="form-control" name="nom" value="<%=user.getNom()%>" required>
+                <input type="text" placeholder="prenom" class="form-control" name="prenom" value="<%=user.getPrenom()%>" required>
+                <input type="date" placeholder="date" class="form-control" name="birthday" value="<%=user.getBirthday()%>" required>
+                <button class="btn btn-lg btn-primary btn-block">update</button>
+            </form>
+        </div>
+    </div>
 </html>

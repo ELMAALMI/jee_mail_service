@@ -1,18 +1,17 @@
 package com.mail.gl.mail_provider.service.imp;
 
-import com.mail.gl.mail_provider.dao.DataAccess;
 import com.mail.gl.mail_provider.dao.UserDao;
+import com.mail.gl.mail_provider.dao.imp.UserDaoImp;
 import com.mail.gl.mail_provider.exception.AuthException;
 import com.mail.gl.mail_provider.exception.BadRequestException;
 import com.mail.gl.mail_provider.model.User;
-import com.mail.gl.mail_provider.service.CrudService;
+import com.mail.gl.mail_provider.service.UserService;
 import com.mail.gl.mail_provider.util.BCryptPasswordEncoder;
 
-import java.sql.SQLException;
 import java.util.List;
 
-public class UserServiceImp implements CrudService<User> {
-    private final UserDao userDataAccess = new UserDao();
+public class UserServiceImp implements UserService {
+    private final UserDao userDataAccess = new UserDaoImp();
     private final BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
     @Override
     public void create(User o) {
@@ -21,7 +20,8 @@ public class UserServiceImp implements CrudService<User> {
         if(u != null){
             throw new BadRequestException("email already taken");
         }
-        o.setPassword(bCryptPasswordEncoder.hash(o.getPassword()));
+        o.setPassword(bCryptPasswordEncoder.cryptPassword(o.getPassword()));
+        System.out.println(o.getPassword());
         userDataAccess.save(o);
     }
 
@@ -44,6 +44,12 @@ public class UserServiceImp implements CrudService<User> {
     public List<User> findAll() {
         return userDataAccess.findAll();
     }
+
+    @Override
+    public User find() {
+        return null;
+    }
+
     public void userLogin(User user){
         User u = userDataAccess.findUserByEmail(user.getEmail());
         String message = "Login or password incorrect";
@@ -53,7 +59,7 @@ public class UserServiceImp implements CrudService<User> {
             throw new AuthException(message);
         }else {
             boolean isAuthenticated = bCryptPasswordEncoder
-                    .authenticate(user.getPassword().toCharArray(),u.getPassword());
+                    .authenticate(user.getPassword(),u.getPassword());
             System.out.println(isAuthenticated);
             if(!isAuthenticated){
                 throw new AuthException(message);

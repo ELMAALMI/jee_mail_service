@@ -14,7 +14,7 @@ public class ReceivingMail {
         try {
             Properties properties = new Properties();
             Session session;
-            String SMTP_HOST = "192.168.1.103";
+            String SMTP_HOST = "192.168.43.29";
             properties.put("mail.smtp.host", SMTP_HOST);
             properties.put("mail.smtp.port","25");
             properties.put("mail.smtp.auth","true");
@@ -22,11 +22,11 @@ public class ReceivingMail {
             session = Session.getDefaultInstance(properties,
                     new javax.mail.Authenticator() {
                         protected PasswordAuthentication getPasswordAuthentication() {
-                            return new PasswordAuthentication("test2@fmail.com","1");
+                            return new PasswordAuthentication("ayoub.elmaalmi@fmail.com","12345");
                         }
             });
             Store store = session.getStore("pop3");
-            store.connect(SMTP_HOST,"test2@fmail.com","1");
+            store.connect(SMTP_HOST,"ayoub.elmaalmi@fmail.com","12345");
             Folder folder = store.getFolder("inbox");
 
             folder.open(Folder.READ_WRITE);
@@ -37,13 +37,11 @@ public class ReceivingMail {
                 Email email = new Email();
                 email.setMessage((String) message.getContent());
                 email.setFrom(message.getFrom()[0].toString());
-                email.setObjet(message.getSubject());
+                email.setSubject(message.getSubject());
                 email.setCreatedAt(message.getSentDate());
                 email.setUuid(pf.getUID(message));
                 emails.add(email);
             }
-
-
             folder.close(true);
             store.close();
         }catch (Exception e){
