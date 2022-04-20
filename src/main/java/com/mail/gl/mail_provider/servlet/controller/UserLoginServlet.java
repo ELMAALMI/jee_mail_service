@@ -27,7 +27,7 @@ public class UserLoginServlet extends HttpServlet {
             user.setEmail(login);
             userServiceImp.userLogin(user);
             HttpSession httpSession = request.getSession();
-            httpSession.setAttribute("user",user.getEmail());
+            httpSession.setAttribute("user",user);
             response.sendRedirect(getServletContext().getContextPath());
         } catch (AuthException e) {
             response.sendRedirect(getServletContext().getContextPath()+"/login?message="+e.getMessage());

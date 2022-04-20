@@ -38,4 +38,5 @@ CREATE TABLE IF NOT EXISTS inbox (
     `message` MESSAGE_TEXT ,
     `subject` varchar (50) NOT NULL,
     `created_at` date not null,
+    `deletedAt` DATE
 );

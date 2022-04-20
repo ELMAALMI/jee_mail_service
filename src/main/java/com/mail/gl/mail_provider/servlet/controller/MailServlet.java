@@ -1,6 +1,7 @@
 package com.mail.gl.mail_provider.servlet.controller;
 
 import com.mail.gl.mail_provider.model.Email;
+import com.mail.gl.mail_provider.model.User;
 import com.mail.gl.mail_provider.service.EmailService;
 import com.mail.gl.mail_provider.service.imp.EmailServiceImp;
 
@@ -19,13 +20,13 @@ public class MailServlet extends HttpServlet {
         try {
             Email email = new Email();
             HttpSession httpSession = request.getSession();
-            String from_email = (String) httpSession.getAttribute("user");
-            email.setFrom(from_email);
+            User user = (User) httpSession.getAttribute("user");
+            email.setFrom(user.getEmail());
             email.setMessage(request.getParameter("message"));
             email.setTo(request.getParameter("to"));
             email.setSubject(request.getParameter("subject"));
             email.setCreatedAt(new Date());
-            emailService.create(email);
+            emailService.create(email,user);
             response.sendRedirect(getServletContext().getContextPath());
         }catch (Exception e){
             response.sendRedirect(getServletContext().getContextPath()+"/mail?message="+e.getMessage());

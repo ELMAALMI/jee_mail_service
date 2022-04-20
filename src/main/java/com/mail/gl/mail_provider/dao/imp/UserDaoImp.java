@@ -13,7 +13,7 @@ public class UserDaoImp implements UserDao {
     @Override
     public void save(User o) {
         try {
-            String sql = "INSERT INTO users(nom,prenom,email,password,active,birthday) VALUES (?,?,?,?,?,?)";
+            String sql = "INSERT INTO users(nom,prenom,email,password,active,birthday) VALUES (?,?,?,ENCRYPT(?,'dovecot'),?,?)";
             statement = connection.prepareStatement(sql);
             statement.setString(1,o.getNom());
             statement.setString(2,o.getPrenom());
@@ -91,6 +91,24 @@ public class UserDaoImp implements UserDao {
         }
         return null;
     }
+
+    @Override
+    public User login(String email, String password) {
+        try{
+            String sql = "SELECT * FROM users WHERE email=? AND `password`=ENCRYPT(?,'dovecot') ";
+            statement = connection.prepareStatement(sql);
+            statement.setString(1,email);
+            statement.setString(2,password);
+            ResultSet set = statement.executeQuery();
+            if(set.next()){
+                return createObjet(set);
+            }
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+        return null;
+    }
+
     private User createObjet(ResultSet set) throws SQLException {
         User u = new User();
         u.setId(set.getInt("id"));

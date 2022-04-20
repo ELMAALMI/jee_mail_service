@@ -1,6 +1,8 @@
 package com.mail.gl.mail_provider.util;
 
+import com.mail.gl.mail_provider.config.AppConf;
 import com.mail.gl.mail_provider.model.Email;
+import com.mail.gl.mail_provider.model.User;
 
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
@@ -8,18 +10,17 @@ import javax.mail.internet.MimeMessage;
 import java.util.Properties;
 
 public class SendMail {
-    public void send(Email email){
+    public void send(Email email, User user){
         Properties properties = new Properties();
         Session session;
         MimeMessage message;
-        String SMTP_HOST = "192.168.43.29";
-        properties.put("mail.smtp.host", SMTP_HOST);
+        properties.put("mail.smtp.host", AppConf.MAIL_HOST);
         properties.put("mail.smtp.port","25");
         properties.put("mail.smtp.auth","true");
         Authenticator authenticator = new Authenticator() {
             @Override
             protected PasswordAuthentication getPasswordAuthentication() {
-                return new PasswordAuthentication(email.getFrom(),"12345");
+                return new PasswordAuthentication(user.getEmail(),user.getPassword());
             }
         };
         session = Session.getDefaultInstance(properties,authenticator);

@@ -1,6 +1,8 @@
 package com.mail.gl.mail_provider.util;
 
+import com.mail.gl.mail_provider.config.AppConf;
 import com.mail.gl.mail_provider.model.Email;
+import com.mail.gl.mail_provider.model.User;
 import com.sun.mail.pop3.POP3Folder;
 
 import javax.mail.*;
@@ -9,24 +11,24 @@ import java.util.List;
 import java.util.Properties;
 
 public class ReceivingMail {
-    public List<Email>  receiving()  {
+    public List<Email>  receiving(User user)  {
         List<Email> emails = new ArrayList<>();
         try {
             Properties properties = new Properties();
             Session session;
-            String SMTP_HOST = "192.168.43.29";
-            properties.put("mail.smtp.host", SMTP_HOST);
+
+            properties.put("mail.smtp.host", AppConf.MAIL_HOST);
             properties.put("mail.smtp.port","25");
             properties.put("mail.smtp.auth","true");
 
             session = Session.getDefaultInstance(properties,
                     new javax.mail.Authenticator() {
                         protected PasswordAuthentication getPasswordAuthentication() {
-                            return new PasswordAuthentication("ayoub.elmaalmi@fmail.com","12345");
+                            return new PasswordAuthentication(user.getEmail(),user.getPassword());
                         }
             });
             Store store = session.getStore("pop3");
-            store.connect(SMTP_HOST,"ayoub.elmaalmi@fmail.com","12345");
+            store.connect(AppConf.MAIL_HOST, user.getEmail(),user.getPassword());
             Folder folder = store.getFolder("inbox");
 
             folder.open(Folder.READ_WRITE);

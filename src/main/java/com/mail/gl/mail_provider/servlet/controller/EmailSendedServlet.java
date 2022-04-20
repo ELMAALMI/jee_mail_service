@@ -1,6 +1,7 @@
 package com.mail.gl.mail_provider.servlet.controller;
 
 import com.google.gson.Gson;
+import com.mail.gl.mail_provider.model.User;
 import com.mail.gl.mail_provider.service.EmailService;
 import com.mail.gl.mail_provider.service.imp.EmailServiceImp;
 
@@ -16,9 +17,9 @@ public class EmailSendedServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession httpSession = request.getSession();
-        String user_email = (String) httpSession.getAttribute("user");
+        User user = (User) httpSession.getAttribute("user");
         response.setContentType("application/json");
-        String emailJsonString = new Gson().toJson(emailService.retrieveUserEmail(user_email));
+        String emailJsonString = new Gson().toJson(emailService.retrieveUserEmail(user.getEmail()));
         PrintWriter out = response.getWriter();
         out.print(emailJsonString);
         out.flush();

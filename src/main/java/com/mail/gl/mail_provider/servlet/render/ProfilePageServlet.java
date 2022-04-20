@@ -1,5 +1,6 @@
 package com.mail.gl.mail_provider.servlet.render;
 
+import com.mail.gl.mail_provider.model.User;
 import com.mail.gl.mail_provider.service.imp.UserServiceImp;
 
 import javax.servlet.*;
@@ -13,9 +14,8 @@ public class ProfilePageServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession httpSession = request.getSession();
-        String user_email = (String) httpSession.getAttribute("user");
-        System.out.println(user_email);
-        request.setAttribute("user",userServiceImp.find(user_email));
+        User user = (User) httpSession.getAttribute("user");
+        request.setAttribute("user",userServiceImp.find(user.getEmail()));
         getServletContext().getRequestDispatcher("/view/profile.jsp").forward(request,response);
     }
 

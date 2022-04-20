@@ -20,8 +20,6 @@ public class UserServiceImp implements UserService {
         if(u != null){
             throw new BadRequestException("email already taken");
         }
-        o.setPassword(bCryptPasswordEncoder.cryptPassword(o.getPassword()));
-        System.out.println(o.getPassword());
         userDataAccess.save(o);
     }
 
@@ -51,19 +49,12 @@ public class UserServiceImp implements UserService {
     }
 
     public void userLogin(User user){
-        User u = userDataAccess.findUserByEmail(user.getEmail());
+        User u = userDataAccess.login(user.getEmail(),user.getPassword());
         String message = "Login or password incorrect";
         System.out.println(u);
         System.out.println(user);
         if(u == null){
             throw new AuthException(message);
-        }else {
-            boolean isAuthenticated = bCryptPasswordEncoder
-                    .authenticate(user.getPassword(),u.getPassword());
-            System.out.println(isAuthenticated);
-            if(!isAuthenticated){
-                throw new AuthException(message);
-            }
         }
     }
     public User find(String email){

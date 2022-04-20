@@ -3,6 +3,7 @@ package com.mail.gl.mail_provider.service.imp;
 import com.mail.gl.mail_provider.dao.EmailDao;
 import com.mail.gl.mail_provider.dao.imp.EmailDaoImp;
 import com.mail.gl.mail_provider.model.Email;
+import com.mail.gl.mail_provider.model.User;
 import com.mail.gl.mail_provider.service.EmailService;
 import com.mail.gl.mail_provider.util.SendMail;
 
@@ -22,18 +23,22 @@ public class EmailServiceImp implements EmailService {
     }
 
     @Override
+    public void create(Email o, User user) {
+        try {
+            emailDao.save(o);
+            sendMail.send(o,user);
+        }catch (Exception exception){
+            exception.printStackTrace();
+        }
+    }
+
+    @Override
     public List<Email> retrieveUserEmail(String email) {
         return emailDao.find("`from`",email);
     }
 
     @Override
     public void create(Email e) {
-        try {
-            emailDao.save(e);
-            sendMail.send(e);
-        }catch (Exception exception){
-            exception.printStackTrace();
-        }
     }
 
     @Override
