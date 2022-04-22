@@ -27,6 +27,7 @@ public class ReceivingMail {
                             return new PasswordAuthentication(user.getEmail(),user.getPassword());
                         }
             });
+
             Store store = session.getStore("pop3");
             store.connect(AppConf.MAIL_HOST, user.getEmail(),user.getPassword());
             Folder folder = store.getFolder("inbox");
@@ -51,5 +52,4 @@ public class ReceivingMail {
         }
         return emails;
     }
-
 }

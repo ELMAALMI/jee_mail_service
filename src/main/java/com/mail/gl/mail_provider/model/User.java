@@ -10,6 +10,7 @@ public class User {
     private String password;
     private boolean active;
     private Date birthday;
+    private boolean admin = false;
     public User(){
     }
     public User(int id, String nom, String prenom, String email, String password,boolean active,Date birthday) {
@@ -87,9 +88,16 @@ public class User {
         this.birthday = birthday;
     }
 
+    public boolean isAdmin() {
+        return admin;
+    }
+    public void setAdmin(boolean admin) {
+        this.admin = admin;
+    }
+
     @Override
     public String toString() {
-        return "User{" +
+        return "{" +
                 "id=" + id +
                 ", nom='" + nom + '\'' +
                 ", prenom='" + prenom + '\'' +
@@ -97,6 +105,7 @@ public class User {
                 ", password='" + password + '\'' +
                 ", active=" + active +
                 ", birthday=" + birthday +
+                ", admin=" + admin +
                 '}';
     }
 }

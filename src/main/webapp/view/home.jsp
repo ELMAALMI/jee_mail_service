@@ -14,6 +14,7 @@
 <body>
     <jsp:include page="../WEB-COMPONENTS/NavBar.jsp"/>
     <jsp:include page="../WEB-COMPONENTS/MailBox.jsp"/>
+    <jsp:include page="../WEB-COMPONENTS/Modal.jsp"/>
     <jsp:include page="../WEB-COMPONENTS/Footer.jsp" />
 </body>
 </html>

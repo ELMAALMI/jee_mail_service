@@ -9,6 +9,7 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
+import java.util.ArrayList;
 
 @WebServlet(name = "HomePageServlet", value = "/")
 public class HomePageServlet extends HttpServlet {
@@ -18,7 +19,6 @@ public class HomePageServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession httpSession = request.getSession();
         User user = (User) httpSession.getAttribute("user");
-
         request.setAttribute("emails",receivingMail.receiving(user));
         request.setAttribute("sendMails",emailService.retrieveUserEmail(user.getEmail()));
         RequestDispatcher dispatcher = getServletContext()
@@ -27,6 +27,5 @@ public class HomePageServlet extends HttpServlet {
     }
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
     }
 }

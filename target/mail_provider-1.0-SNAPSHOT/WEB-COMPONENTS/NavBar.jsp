@@ -1,4 +1,7 @@
-<nav class="navbar navbar-expand-md navbar-dark bg-primary">
+<%@ page import="com.mail.gl.mail_provider.model.User" %><%
+    boolean isAdmin = ((User)request.getSession().getAttribute("user")).isAdmin();
+%>
+<nav class="navbar navbar-expand-md navbar-dark bg-dark">
     <div class="container">
         <a href="home" class="navbar-brand">F-MAIL</a>
         <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#main-nav">
@@ -21,6 +24,12 @@
                             <i class="fa fa-sign-out" aria-hidden="true"></i>
                             Logout
                         </a>
+                        <% if(isAdmin){ %>
+                            <a href="admin" class="dropdown-item">
+                                <i class="fa fa-dash" aria-hidden="true"></i>
+                                Admin
+                            </a>
+                        <%}%>
                     </div>
                 </li>
             </ul>

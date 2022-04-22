@@ -2,6 +2,7 @@ package com.mail.gl.mail_provider.servlet.controller;
 
 import com.mail.gl.mail_provider.exception.AuthException;
 import com.mail.gl.mail_provider.model.User;
+import com.mail.gl.mail_provider.service.UserService;
 import com.mail.gl.mail_provider.service.imp.UserServiceImp;
 
 import javax.servlet.*;
@@ -11,12 +12,11 @@ import java.io.IOException;
 
 @WebServlet(name = "UserLoginServlet", value = "/users/login")
 public class UserLoginServlet extends HttpServlet {
-    private final UserServiceImp userServiceImp = new UserServiceImp();
+    private final UserService userServiceImp = new UserServiceImp();
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doPost(request,response);
     }
-
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
@@ -25,9 +25,11 @@ public class UserLoginServlet extends HttpServlet {
             User user = new User();
             user.setPassword(pwd);
             user.setEmail(login);
-            userServiceImp.userLogin(user);
+            user.setAdmin(userServiceImp.userLogin(user).isAdmin());
+            //--------------
             HttpSession httpSession = request.getSession();
             httpSession.setAttribute("user",user);
+            //--------------------
             response.sendRedirect(getServletContext().getContextPath());
         } catch (AuthException e) {
             response.sendRedirect(getServletContext().getContextPath()+"/login?message="+e.getMessage());

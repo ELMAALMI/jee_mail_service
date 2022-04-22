@@ -14,11 +14,11 @@ public class UserServiceImp implements UserService {
     private final UserDao userDataAccess = new UserDaoImp();
     private final BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
     @Override
-    public void create(User o) {
+    public void create(User o) throws Exception {
         User u = userDataAccess.findUserByEmail(o.getEmail());
         System.out.println(u);
         if(u != null){
-            throw new BadRequestException("email already taken");
+            throw new Exception("error from service");
         }
         userDataAccess.save(o);
     }
@@ -43,12 +43,7 @@ public class UserServiceImp implements UserService {
         return userDataAccess.findAll();
     }
 
-    @Override
-    public User find() {
-        return null;
-    }
-
-    public void userLogin(User user){
+    public User userLogin(User user){
         User u = userDataAccess.login(user.getEmail(),user.getPassword());
         String message = "Login or password incorrect";
         System.out.println(u);
@@ -56,6 +51,7 @@ public class UserServiceImp implements UserService {
         if(u == null){
             throw new AuthException(message);
         }
+        return u;
     }
     public User find(String email){
         return userDataAccess.findUserByEmail(email);

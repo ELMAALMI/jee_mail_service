@@ -11,7 +11,7 @@ import java.io.IOException;
         "/",
         "/profile",
         "/send-mail",
-        "/profile"
+        "/admin/*"
 })
 public class AuthenticationFilter implements Filter {
     ServletContext context;

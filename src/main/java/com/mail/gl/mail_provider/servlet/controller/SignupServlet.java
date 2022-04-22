@@ -1,5 +1,6 @@
 package com.mail.gl.mail_provider.servlet.controller;
 
+import com.mail.gl.mail_provider.exception.BadRequestException;
 import com.mail.gl.mail_provider.model.User;
 import com.mail.gl.mail_provider.service.imp.UserServiceImp;
 import com.mail.gl.mail_provider.util.DateParser;
@@ -29,9 +30,11 @@ public class SignupServlet extends HttpServlet {
             user.setBirthday(DateParser.parse(request.getParameter("birthday")));
             userService.create(user);
             response.sendRedirect(getServletContext().getContextPath()+"/login");
-        } catch (Exception bex){
+        } catch (BadRequestException bex){
             bex.printStackTrace();
             response.sendRedirect(getServletContext().getContextPath()+"/signup?error_msg="+bex.getMessage());
+        }catch (Exception e){
+            response.sendRedirect(getServletContext().getContextPath()+"/signup?error_msg="+e.getMessage());
         }
     }
 }

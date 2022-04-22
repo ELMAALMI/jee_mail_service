@@ -19,7 +19,7 @@ public class EmailServiceImp implements EmailService {
 
     @Override
     public Email findOne(int id) {
-        return null;
+        return emailDao.find(id);
     }
 
     @Override

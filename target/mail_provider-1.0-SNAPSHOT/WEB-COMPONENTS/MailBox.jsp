@@ -5,6 +5,7 @@
     List<Email> emails = (List<Email>) request.getAttribute("emails");
     List<Email> sendMails = (List<Email>) request.getAttribute("sendMails");
 %>
+<div id="loading" class="loading">Loading</div>
 <div class="container mt-5">
     <div class="row">
         <div class="col-lg-12">
@@ -50,7 +51,7 @@
                                         <%
                                             for (Email e:emails){
                                         %>
-                                        <tr>
+                                        <tr style="cursor: pointer" onclick="open_model('<%=e.getUuid()%>','re')">
                                             <td class="action"><input type="checkbox" /></td>
                                             <td class="name"><%=e.getFrom()%></td>
                                             <td class="subject">

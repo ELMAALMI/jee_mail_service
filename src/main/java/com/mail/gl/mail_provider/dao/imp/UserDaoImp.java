@@ -118,6 +118,7 @@ public class UserDaoImp implements UserDao {
         u.setPassword(set.getString("password"));
         u.setBirthday(set.getDate("birthday"));
         u.setActive(set.getBoolean("active"));
+        u.setAdmin(set.getBoolean("is_admin"));
         return u;
     }
 }

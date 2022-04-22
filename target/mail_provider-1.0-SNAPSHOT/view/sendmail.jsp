@@ -15,12 +15,6 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-lg-2 control-label">Cc / Bcc</label>
-                    <div class="col-lg-12">
-                        <input type="text" name="cc" placeholder="" id="cc" class="form-control">
-                    </div>
-                </div>
-                <div class="form-group">
                     <label class="col-lg-2 control-label">Subject</label>
                     <div class="col-lg-12">
                         <input type="text" name="subject" placeholder="" id="inputPassword1" class="form-control">

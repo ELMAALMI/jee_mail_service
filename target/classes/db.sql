@@ -25,6 +25,7 @@ CREATE TABLE IF NOT EXISTS `users` (
     `active` tinyint(1) NOT NULL,
     `domaine_id` int(11) DEFAULT NULL,
     `birthday` date NOT NULL,
+    `is_admin` tinyint(1) DEFAULT 0,
     PRIMARY KEY (`id`),
     UNIQUE KEY `email` (`email`),
     KEY `domaine_id` (`domaine_id`),
