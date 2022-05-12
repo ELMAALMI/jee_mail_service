@@ -1,4 +1,4 @@
-<%@ page import="com.mail.gl.mail_provider.model.User" %><%--
+<%@ page import="com.mail.gl.elmaalmi.model.User" %><%--
   Created by IntelliJ IDEA.
   User: EL MAALMI
   Date: 12/04/2022

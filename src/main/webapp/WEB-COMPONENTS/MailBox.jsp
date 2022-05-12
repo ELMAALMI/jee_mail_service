@@ -1,6 +1,6 @@
 <%@ page import="java.util.List" %>
-<%@ page import="com.mail.gl.mail_provider.model.Email" %>
-<%@ page import="com.mail.gl.mail_provider.util.DateParser" %>
+<%@ page import="com.mail.gl.elmaalmi.model.Email" %>
+<%@ page import="com.mail.gl.elmaalmi.util.DateParser" %>
 <%
     List<Email> emails = (List<Email>) request.getAttribute("emails");
     List<Email> sendMails = (List<Email>) request.getAttribute("sendMails");
@@ -20,7 +20,7 @@
                                 <div class="list-group shadow-none">
                                     <button id="inbox_mail_btn" class="list-group-item active"><i class="fa fa-inbox mr-2"></i>Inbox <b>(<%=emails.size()%>)</b></button>
                                     <button id="send_mail_btn" class="list-group-item"><i class="fa fa-paper-plane-o mr-2"></i>Sent Mail <b>(<%=sendMails.size()%>)</b> </button>
-                                    <button id="trash_mail_btn" class="list-group-item"><i class="fa fa-trash-o mr-2"></i>Trash <b>()</b></button>
+                                    <!--button id="trash_mail_btn" class="list-group-item"><i class="fa fa-trash-o mr-2"></i>Trash <b>()</b></button -->
                                 </div>
                             </div>
 

@@ -1,8 +1,6 @@
 <%@ page import="java.util.List" %>
-<%@ page import="com.mail.gl.mail_provider.model.User" %>
+<%@ page import="com.mail.gl.elmaalmi.model.User" %>
 <%@ page import="java.util.ArrayList" %>
-<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
-
 <%--
   Created by IntelliJ IDEA.
   User: EL MAALMI
@@ -47,7 +45,7 @@
                         <th> <%=u.getEmail()%> </th>
                         <th>
                             <span class="badge <%= u.isActive()?"bg-success":"bg-danger"%>">
-                                <i class="fa fa-flash"></i>
+                                <i class="fa fa-<%= u.isActive()?"unlock":"lock"%>"></i>
                             </span>
                         </th>
                         <th>
@@ -56,12 +54,9 @@
                             </span>
                         </th>
                         <th>
-                            <div class="d-md-flex justify-content-md-end">
-                                <a href="<%=u.getId()%>" class="btn btn-primary mr-2" type="button">
-                                    <i class="fa fa-pencil"></i>
-                                </a>
-                                <a href="<%=u.getId()%>" class="btn btn-primary" type="button">
-                                    <i class="fa fa-trash"></i>
+                            <div class="d-md-flex">
+                                <a href="users-status?id=<%=u.getId()%>&active=<%=u.isActive()%>" class="btn btn-primary mr-2" type="button">
+                                    <i class="fa fa-plug"></i>
                                 </a>
                             </div>
                         </th>

@@ -19,6 +19,7 @@
             <input type="text" placeholder="Email Address" class="form-control" name="email" required>
             <input type="password" placeholder="password" class="form-control" name="password" required>
             <button class="btn btn-lg btn-primary btn-block">Login</button>
+            <p class="text-center mt-3">if you don't have account ? <a href="signup" class="btn">signup</a></p>
         </form>
     </div>
     <jsp:include page="../WEB-COMPONENTS/Footer.jsp"/>

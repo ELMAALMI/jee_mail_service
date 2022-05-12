@@ -24,6 +24,7 @@
               <input type="date" placeholder="Birth day" class="form-control" name="birthday" required>
               <input type="password" placeholder="password" class="form-control" name="password" required>
               <button class="btn btn-lg btn-primary btn-block">SIGN-UP</button>
+              <p class="text-center mt-3">already have account ? <a href="login" class="btn">Login</a></p>
           </form>
       </div>
   </div>

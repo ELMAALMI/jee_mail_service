@@ -1,4 +1,4 @@
-<%@ page import="com.mail.gl.mail_provider.model.User" %><%
+<%@ page import="com.mail.gl.elmaalmi.model.User" %><%
     boolean isAdmin = ((User)request.getSession().getAttribute("user")).isAdmin();
 %>
 <nav class="navbar navbar-expand-md navbar-dark bg-dark">
@@ -20,16 +20,16 @@
                             <i class="fa fa-user" aria-hidden="true"></i>
                             Profile
                         </a>
+                        <% if(isAdmin){ %>
+                        <a href="admin" class="dropdown-item">
+                            <i class="fa fa-building" aria-hidden="true"></i>
+                            Admin
+                        </a>
+                        <%}%>
                         <a href="log-out" class="dropdown-item">
                             <i class="fa fa-sign-out" aria-hidden="true"></i>
                             Logout
                         </a>
-                        <% if(isAdmin){ %>
-                            <a href="admin" class="dropdown-item">
-                                <i class="fa fa-dash" aria-hidden="true"></i>
-                                Admin
-                            </a>
-                        <%}%>
                     </div>
                 </li>
             </ul>

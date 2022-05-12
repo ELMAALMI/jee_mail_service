@@ -1,7 +1,7 @@
 const inbox_body_table = document.getElementById("inbox_body_table");
 const send_mail_btn = document.getElementById("send_mail_btn");
 const inbox_mail_btn = document.getElementById("inbox_mail_btn");
-const trash_mail_btn = document.getElementById("trash_mail_btn");
+//const trash_mail_btn = document.getElementById("trash_mail_btn");
 const refresh_btn = document.getElementById("refresh_btn");
 const model_windows = document.getElementById("inbox-mail");
 const close = document.getElementById("close");
@@ -53,7 +53,7 @@ const handleInboxClick = async (e)=>{
         console.log(content)
         inbox_body_table.innerHTML = content;
         send_mail_btn.classList.add("active");
-        trash_mail_btn.classList.remove("active");
+        //trash_mail_btn.classList.remove("active");
         inbox_mail_btn.classList.remove("active");
     }catch (e){
         console.log(e)
