@@ -1,6 +1,6 @@
 <%@ page import="java.util.List" %>
-<%@ page import="com.mail.gl.elmaalmi.model.Email" %>
-<%@ page import="com.mail.gl.elmaalmi.util.DateParser" %>
+<%@ page import="com.mail.elmaalmi.billal.model.Email" %>
+<%@ page import="com.mail.elmaalmi.billal.util.DateParser" %>
 <%
     List<Email> emails = (List<Email>) request.getAttribute("emails");
     List<Email> sendMails = (List<Email>) request.getAttribute("sendMails");

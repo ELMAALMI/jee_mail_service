@@ -15,7 +15,9 @@ public interface DataAccess <T>{
     void delete(T o);
     List<T> findAll();
     T find(long id);
+    default void aff(){
 
+    }
     default ResultSet findBy(String column,String value,String table,String ...sort){
         try{
             Statement statement = connection.createStatement();

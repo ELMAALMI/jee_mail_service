@@ -1,4 +1,4 @@
-<%@ page import="com.mail.gl.elmaalmi.model.User" %><%
+<%@ page import="com.mail.elmaalmi.billal.model.User" %><%
     boolean isAdmin = ((User)request.getSession().getAttribute("user")).isAdmin();
 %>
 <nav class="navbar navbar-expand-md navbar-dark bg-dark">

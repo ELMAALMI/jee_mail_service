@@ -1,5 +1,5 @@
 <%@ page import="java.util.List" %>
-<%@ page import="com.mail.gl.elmaalmi.model.User" %>
+<%@ page import="com.mail.elmaalmi.billal.model.User" %>
 <%@ page import="java.util.ArrayList" %>
 <%--
   Created by IntelliJ IDEA.
